@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">14D_TP1</string>
+    <string name="username">Nom d\'utilisateur</string>
+    <string name="connect">Se connecter</string>
+    <string name="votre_balance">Votre Balance :</string>
+    <string name="user">inconnu</string>
+    <string name="welcome">Bienvenue </string>
+    <string name="d_poser">Déposer</string>
+    <string name="huh">0</string>
+    <string name="acc_der_aux_jeux">Accéder aux jeux</string>
+    <string name="guichet_de_banque">Guichet de banque</string>
+    <string name="moublier">m\'oublier</string>
+    <string name="balance">Balance :</string>
+    <string name="montant">Montant</string>
+</resources>
