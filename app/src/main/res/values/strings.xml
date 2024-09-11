@@ -12,4 +12,7 @@
     <string name="moublier">m\'oublier</string>
     <string name="balance">Balance :</string>
     <string name="montant">Montant</string>
+    <string name="revenir">Menu principal</string>
+    <string name="number">Jetons à miser</string>
+    <string name="lancer">Lancer!</string>
 </resources>
