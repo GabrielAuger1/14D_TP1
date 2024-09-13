@@ -1,12 +1,11 @@
 package com.example.a14d_tp1
 
 import android.os.Bundle
-import android.widget.*
-import android.window.OnBackInvokedDispatcher
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 
 class GuichetDeBanqueActivity : AppCompatActivity() {
     private lateinit var sp: android.content.SharedPreferences

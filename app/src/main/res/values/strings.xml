@@ -15,4 +15,6 @@
     <string name="revenir">Menu principal</string>
     <string name="number">Jetons à miser</string>
     <string name="lancer">Lancer!</string>
+    <string name="pair">pair</string>
+    <string name="impair">impair</string>
 </resources>

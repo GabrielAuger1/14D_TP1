@@ -27,25 +27,45 @@
         android:id="@+id/mise"
         android:layout_width="219dp"
         android:layout_height="67dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="8dp"
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/number"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
+    <RadioButton
+        android:id="@+id/rd_pair"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pair"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.344"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mise" />
+
+    <RadioButton
+        android:id="@+id/rd_impair"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/impair"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/rd_pair"
+        app:layout_constraintTop_toBottomOf="@+id/mise" />
+
+
     <Button
-        android:id="@+id/lancer"
+        android:id="@+id/bt_lancer"
         android:layout_width="126dp"
         android:layout_height="76dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="116dp"
         android:backgroundTint="@color/dark_green"
         android:text="@string/lancer"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mise" />
 

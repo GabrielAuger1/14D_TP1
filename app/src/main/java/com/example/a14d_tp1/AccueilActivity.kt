@@ -20,10 +20,10 @@ class AccueilActivity : AppCompatActivity() {
         setContentView(R.layout.activity_accueil)
 
         sp = getSharedPreferences("userPrefs", MODE_PRIVATE)
-        username = findViewById<android.widget.TextView>(R.id.user)
-        balance = findViewById<android.widget.TextView>(R.id.balance)
-        btn_jeux = findViewById<android.widget.Button>(R.id.bt_jeux)
-        btn_banque = findViewById<android.widget.Button>(R.id.bt_banque)
+        username = findViewById(R.id.user)
+        balance = findViewById(R.id.balance)
+        btn_jeux = findViewById(R.id.bt_jeux)
+        btn_banque = findViewById(R.id.bt_banque)
 
         username.text = sp.getString("nom", "Inconnu")
         balance.text = sp.getInt("balance", 0).toString()
