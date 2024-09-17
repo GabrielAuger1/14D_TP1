@@ -6,7 +6,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".RouletteActivity">
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/balance"
+        android:text="@string/balance"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="50dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/credit"
+        android:text="@string/credit"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/balance"
+        android:layout_marginTop="8dp"/>
     <TextView
         android:id="@+id/textView"
         android:layout_width="152dp"
@@ -16,15 +35,14 @@
         android:layout_marginEnd="100dp"
         android:layout_marginBottom="69dp"
         android:text="@string/number"
-        app:layout_constraintBottom_toTopOf="@+id/mise"
+        app:layout_constraintBottom_toTopOf="@+id/bet"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:textAlignment="center"
         android:textSize="20sp"/>
-
     <EditText
-        android:id="@+id/mise"
+        android:id="@+id/bet"
         android:layout_width="219dp"
         android:layout_height="67dp"
         android:layout_marginTop="8dp"
@@ -35,27 +53,31 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <RadioButton
-        android:id="@+id/rd_pair"
+    <RadioGroup
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/pair"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.344"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mise" />
-
-    <RadioButton
-        android:id="@+id/rd_impair"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/impair"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/rd_pair"
-        app:layout_constraintTop_toBottomOf="@+id/mise" />
-
-
+        app:layout_constraintTop_toBottomOf="@+id/bet">
+        <RadioButton
+            android:id="@+id/rd_pair"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pair"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.344"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bet" />
+        <RadioButton
+            android:id="@+id/rd_impair"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/impair"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/rd_pair"
+            app:layout_constraintTop_toBottomOf="@+id/bet" />
+    </RadioGroup>
     <Button
         android:id="@+id/bt_lancer"
         android:layout_width="126dp"
@@ -67,6 +89,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mise" />
-
+        app:layout_constraintTop_toBottomOf="@+id/bet" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/back"
+        android:text="@string/back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bt_lancer"
+        android:layout_marginTop="8dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
