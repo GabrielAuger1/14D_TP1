@@ -12,7 +12,7 @@ class RouletteActivity : AppCompatActivity() {
     lateinit var rd_impair: RadioButton
     lateinit var resultat: Toast
     lateinit var bet: EditText
-    lateinit var balance: TextView
+    lateinit var txtBox_credit: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -22,8 +22,8 @@ class RouletteActivity : AppCompatActivity() {
         rd_pair = findViewById(R.id.rd_pair)
         rd_impair = findViewById(R.id.rd_impair)
         bet = findViewById(R.id.bet)
-        balance = findViewById(R.id.credit)
-        balance.text = sp.getInt("balance", 0).toString()
+        txtBox_credit = findViewById(R.id.credit)
+        txtBox_credit.text = sp.getInt("balance", 0).toString()
         checkbox_manager(rd_pair)
         checkbox_manager(rd_impair)
         btn_lancer.setOnClickListener {
@@ -55,56 +55,44 @@ class RouletteActivity : AppCompatActivity() {
         val impair_checked = rd_impair.isChecked
         val editor = sp.edit()
         val balance = sp.getInt("balance", 0)
-        val bet = bet.text.toString().toInt()
-        if (bet > balance) {
+        if (bet.text.toString().toInt() > balance) {
             resultat = Toast.makeText(this, "Vous n'avez pas assez d'argent", Toast.LENGTH_SHORT)
             resultat.show()
             return
         }
-        else if (bet <= 0) {
+        else if (bet.text.toString().toInt() <= 0) {
             resultat = Toast.makeText(this, "Vous devez miser une somme positive", Toast.LENGTH_SHORT)
             resultat.show()
             return
         }
-        editor.putInt("balance", balance - bet)
+
+
+        editor.putInt("balance", balance - bet.text.toString().toInt())
+        txtBox_credit.text = sp.getInt("balance", 0).toString()
         editor.putInt("random", random)
         editor.putBoolean("pair", pair)
         editor.putBoolean("impair", impair)
         editor.putBoolean("pair_checked", pair_checked)
         editor.putBoolean("impair_checked", impair_checked)
         editor.apply()
-        afficherResultat(pair_checked, pair, impair_checked, impair)
+        resultManager(pair_checked, pair, impair_checked, impair)
     }
 
-    private fun afficherResultat(
+    private fun resultManager(
         pair_checked: Boolean,
         pair: Boolean,
         impair_checked: Boolean,
         impair: Boolean
     ) {
         if (pair_checked && pair) {
-            resultat = Toast.makeText(this, "Vous avez gagné", Toast.LENGTH_SHORT)
-            updateBalance(true)
-            resultat.show()
+            sp.edit().putInt("balance", sp.getInt("balance", 0) + bet.text.toString().toInt() * 2).apply()
+            txtBox_credit.text = sp.getInt("balance", 0).toString()
         } else if (impair_checked && impair) {
-            resultat = Toast.makeText(this, "Vous avez gagné", Toast.LENGTH_SHORT)
-            updateBalance(true)
+            sp.edit().putInt("balance", sp.getInt("balance", 0) + bet.text.toString().toInt() * 2).apply()
             resultat.show()
+            txtBox_credit.text = sp.getInt("balance", 0).toString()
         } else {
-            resultat = Toast.makeText(this, "Vous avez perdu", Toast.LENGTH_SHORT)
-            updateBalance(false)
-            resultat.show()
-        }
-    }
-    private fun updateBalance(resultat: Boolean) {
-        val balance = sp.getInt("balance", 0)
-        val editor = sp.edit()
-        if (resultat) {
-            editor.putInt("balance", balance + 10)
-            editor.apply()
-        } else {
-            editor.putInt("balance", balance - 10)
-            editor.apply()
+            txtBox_credit.text = sp.getInt("balance", 0).toString()
         }
     }
 }
