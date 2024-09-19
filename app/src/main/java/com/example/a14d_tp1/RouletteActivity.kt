@@ -5,6 +5,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.*
 
+@Suppress("SpellCheckingInspection")
 class RouletteActivity : AppCompatActivity() {
     private lateinit var sp: android.content.SharedPreferences
     private lateinit var btnLancer: Button
