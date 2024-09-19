@@ -6,53 +6,53 @@ import androidx.appcompat.app.AppCompatActivity
 import android.widget.*
 
 class RouletteActivity : AppCompatActivity() {
-    lateinit var sp: android.content.SharedPreferences
-    lateinit var btn_lancer: Button
-    lateinit var rd_pair: RadioButton
-    lateinit var rd_impair: RadioButton
-    lateinit var resultat: Toast
-    lateinit var bet: EditText
-    lateinit var txtBox_credit: TextView
+    private lateinit var sp: android.content.SharedPreferences
+    private lateinit var btnLancer: Button
+    private lateinit var rdPair: RadioButton
+    private lateinit var rdImpair: RadioButton
+    private lateinit var resultat: Toast
+    private lateinit var bet: EditText
+    private lateinit var txtboxCredit: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_roulette)
         sp = getSharedPreferences("userPrefs", MODE_PRIVATE)
-        btn_lancer = findViewById(R.id.bt_lancer)
-        rd_pair = findViewById(R.id.rd_pair)
-        rd_impair = findViewById(R.id.rd_impair)
+        btnLancer = findViewById(R.id.bt_lancer)
+        rdPair = findViewById(R.id.rd_pair)
+        rdImpair = findViewById(R.id.rd_impair)
         bet = findViewById(R.id.bet)
-        txtBox_credit = findViewById(R.id.credit)
-        txtBox_credit.text = sp.getInt("balance", 0).toString()
-        checkbox_manager(rd_pair)
-        checkbox_manager(rd_impair)
-        btn_lancer.setOnClickListener {
-            lancer(it)
+        txtboxCredit = findViewById(R.id.credit)
+        txtboxCredit.text = sp.getInt("balance", 0).toString()
+        checkboxManager(rdPair)
+        checkboxManager(rdImpair)
+        btnLancer.setOnClickListener {
+            lancer()
         }
     }
-    fun checkbox_manager(view: android.view.View) {
+    private fun checkboxManager(view: android.view.View) {
         if (view is CheckBox) {
             val checked: Boolean = view.isChecked
             when (view.id) {
                 R.id.rd_pair -> {
                     if (checked) {
-                        rd_impair.isChecked = false
+                        rdImpair.isChecked = false
                     }
                 }
                 R.id.rd_impair -> {
                     if (checked) {
-                        rd_pair.isChecked = false
+                        rdPair.isChecked = false
                     }
                 }
             }
         }
     }
-    fun lancer(view: android.view.View) {
+    private fun lancer() {
         val random = (0..36).random()
         val pair = random % 2 == 0
         val impair = random % 2 != 0
-        val pair_checked = rd_pair.isChecked
-        val impair_checked = rd_impair.isChecked
+        val pairChecked = rdPair.isChecked
+        val impairChecked = rdImpair.isChecked
         val editor = sp.edit()
         val balance = sp.getInt("balance", 0)
         if (bet.text.toString().toInt() > balance) {
@@ -68,31 +68,30 @@ class RouletteActivity : AppCompatActivity() {
 
 
         editor.putInt("balance", balance - bet.text.toString().toInt())
-        txtBox_credit.text = sp.getInt("balance", 0).toString()
+        txtboxCredit.text = sp.getInt("balance", 0).toString()
         editor.putInt("random", random)
         editor.putBoolean("pair", pair)
         editor.putBoolean("impair", impair)
-        editor.putBoolean("pair_checked", pair_checked)
-        editor.putBoolean("impair_checked", impair_checked)
+        editor.putBoolean("pair_checked", pairChecked)
+        editor.putBoolean("impair_checked", impairChecked)
         editor.apply()
-        resultManager(pair_checked, pair, impair_checked, impair)
+        resultManager(pairChecked, pair, impairChecked, impair)
     }
 
     private fun resultManager(
-        pair_checked: Boolean,
+        pairChecked: Boolean,
         pair: Boolean,
-        impair_checked: Boolean,
+        impairChecked: Boolean,
         impair: Boolean
     ) {
-        if (pair_checked && pair) {
+        if (pairChecked && pair) {
             sp.edit().putInt("balance", sp.getInt("balance", 0) + bet.text.toString().toInt() * 2).apply()
-            txtBox_credit.text = sp.getInt("balance", 0).toString()
-        } else if (impair_checked && impair) {
+            txtboxCredit.text = sp.getInt("balance", 0).toString()
+        } else if (impairChecked && impair) {
             sp.edit().putInt("balance", sp.getInt("balance", 0) + bet.text.toString().toInt() * 2).apply()
-            resultat.show()
-            txtBox_credit.text = sp.getInt("balance", 0).toString()
+            txtboxCredit.text = sp.getInt("balance", 0).toString()
         } else {
-            txtBox_credit.text = sp.getInt("balance", 0).toString()
+            txtboxCredit.text = sp.getInt("balance", 0).toString()
         }
     }
 }
